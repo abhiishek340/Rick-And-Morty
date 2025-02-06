@@ -1,7 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ClassApp</string>
-    <string name="hello_world">Hello, World!</string>
-    <string name="a_picture_of_a_character_in_rick_and_morty">a picture of a character in rick and morty</string>
-    <string name="name">Name: %s</string>
-    <string name="age">Age: %d</string>
+    <string name="app_name">ClassApp2025</string>
+    <string name="search_characters">Search characters, locations, episodes…</string>
+    <string name="characters">Characters</string>
+    <string name="locations">Locations</string>
+    <string name="episodes">Episodes</string>
+    <string name="favorites">Favorites</string>
+    <string name="profile">Profile</string>
+    <string name="create_character">Create Character</string>
+    <string name="last_known_location">Last Known Location</string>
+    <string name="view_details">View Details</string>
+    <string name="a_picture_of_a_character_in_rick_and_morty">Character Image</string>
+    
+    <!-- Tab titles -->
+    <string name="tab_all">All</string>
+    <string name="tab_alive">Alive</string>
+    <string name="tab_dead">Dead</string>
+    <string name="tab_unknown">Unknown</string>
+    <string name="tab_earth">Earth</string>
+    <string name="tab_space">Space</string>
+    
+    <!-- Character details -->
+    <string name="species">Species</string>
+    <string name="gender">Gender</string>
+    <string name="origin">Origin</string>
+    <string name="first_seen">First Seen</string>
+    <string name="appearances">Appearances</string>
+    
+    <!-- Actions -->
+    <string name="share">Share</string>
+    <string name="favorite">Favorite</string>
+    <string name="unfavorite">Unfavorite</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
+    
+    <!-- Profile section -->
+    <string name="settings">Settings</string>
+    <string name="theme">Theme</string>
+    <string name="notifications">Notifications</string>
+    <string name="language">Language</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
+    
+    <!-- Messages -->
+    <string name="added_to_favorites">Added to favorites</string>
+    <string name="removed_from_favorites">Removed from favorites</string>
+    <string name="no_results_found">No results found</string>
+    <string name="error_loading_data">Error loading data</string>
+    <string name="try_again">Try Again</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search characters...</string>
 </resources>

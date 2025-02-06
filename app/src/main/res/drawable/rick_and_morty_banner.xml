@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="315"
+                android:startColor="@color/portal_blue"
+                android:centerColor="@color/background_dark"
+                android:endColor="@color/portal_green"
+                android:type="linear" />
+        </shape>
+    </item>
+    
+    <!-- Portal effect -->
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="150%p"
+                android:startColor="#4097CE4C"
+                android:centerColor="#2097CE4C"
+                android:endColor="#0097CE4C"
+                android:centerX="0.7"
+                android:centerY="0.3" />
+        </shape>
+    </item>
+    
+    <!-- Additional portal swirl -->
+    <item>
+        <rotate android:fromDegrees="45">
+            <shape android:shape="oval">
+                <gradient
+                    android:type="sweep"
+                    android:startColor="#4084C6E6"
+                    android:centerColor="#2084C6E6"
+                    android:endColor="#0084C6E6"
+                    android:centerX="0.3"
+                    android:centerY="0.7" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <!-- Overlay pattern -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="45"
+                android:startColor="#33000000"
+                android:centerColor="#11000000"
+                android:endColor="#66000000"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list> 

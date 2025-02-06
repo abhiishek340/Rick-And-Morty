@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ClassApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.ClassApp2025" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -11,6 +12,36 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- Background colors -->
+        <item name="android:windowBackground">@color/background_dark</item>
+        <!-- Text colors -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <!-- Card style -->
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <!-- SearchBar theming -->
+        <item name="materialSearchBarStyle">@style/Widget.Material3.SearchBar</item>
+        <item name="materialSearchViewStyle">@style/Widget.Material3.SearchView</item>
+        <!-- Text appearances -->
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Material3.HeadlineMedium</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Material3.HeadlineSmall</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Material3.TitleMedium</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Material3.BodyLarge</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Material3.BodyMedium</item>
+        <!-- Dialog theme -->
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+    </style>
+
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="windowMinWidthMajor">0dp</item>
+        <item name="windowMinWidthMinor">0dp</item>
+        <item name="dialogCornerRadius">16dp</item>
+    </style>
+
+    <!-- Shape Appearance for circular images -->
+    <style name="ShapeAppearance.App.CircularImageView" parent="ShapeAppearance.Material3.Corner.Full">
+        <item name="cornerSize">50%</item>
     </style>
 </resources>
