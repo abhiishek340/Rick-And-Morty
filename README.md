@@ -16,9 +16,12 @@ A modern Android application that displays characters from the Rick and Morty un
 
 ## 🎬 Demo
 
-### 📹 Video Demonstration
-![Demo](ClassApp2025/demo.gif)
-ffmpeg -i ClassApp2025/demo.mp4 -vf "fps=10,scale=800:-1" ClassApp2025/demo.gif
+
+## 📸 Screenshots
+
+![Screenshot 1](ClassApp2025/demo/demo.png) ![Screenshot 2](ClassApp2025/demoo/demo.png)  
+
+![Screenshot 3](ClassApp2025/demo/demooo.png) ![Screenshot 4](ClassApp2025/demoooo/demo.png)
 
 
 
