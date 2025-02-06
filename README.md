@@ -19,9 +19,18 @@ A modern Android application that displays characters from the Rick and Morty un
 
 ## 📸 Screenshots
 
-![Screenshot 1](ClassApp2025/demo/demo.png) ![Screenshot 2](ClassApp2025/demoo/demo.png)  
 
-![Screenshot 3](ClassApp2025/demo/demooo.png) ![Screenshot 4](ClassApp2025/demoooo/demo.png)
+
+<table>
+  <tr>
+    <td><img src="demo/demo.png" width="400"></td>
+    <td><img src="demo/demoo.png" width="400"></td>
+  </tr>
+  <tr>
+    <td><img src="demo/demooo.png" width="400"></td>
+    <td><img src="demo/demoooo.png" width="400"></td>
+  </tr>
+</table>
 
 
 
@@ -146,6 +155,8 @@ We welcome contributions! Follow these steps:
 ---
 
 ## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
 
