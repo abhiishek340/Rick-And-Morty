@@ -1,174 +1,120 @@
+<div align="center">
+
 # Rick and Morty Character Viewer
 
-A modern Android application that displays characters from the Rick and Morty universe with a clean **Material Design 3** interface.
+An Android app that lists Rick and Morty characters in a Material Design card list and opens a detail dialog for each one.
 
----
+<img src="https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin"/>
+<img src="https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android"/>
+<img src="https://img.shields.io/badge/Material_Components-757575?style=flat-square&logo=materialdesign&logoColor=white" alt="Material Components"/>
+<img src="https://img.shields.io/badge/Hilt-34A853?style=flat-square&logo=android&logoColor=white" alt="Hilt"/>
+<img src="https://img.shields.io/badge/Retrofit-48B983?style=flat-square&logo=square&logoColor=white" alt="Retrofit"/>
+<img src="https://img.shields.io/badge/Min_SDK-26-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Min SDK 26"/>
 
-## 🚀 Features
+</div>
 
-✅ **Character List** – Scrollable list of Rick and Morty characters  
-✅ **Character Details** – View detailed character information in a beautiful dialog  
-✅ **Visual Status Indicators** – Color-coded indicators (🟢 Alive, 🔴 Dead, ⚪ Unknown)  
-✅ **Responsive Design** – Adapts to different screen sizes and orientations  
-✅ **Material Design 3** – Modern UI components and animations  
+> Built as a class assignment for an Android development course. The project uses the course's `edu.nku.classapp` starter package.
 
----
+## Overview
 
-## 🎬 Demo
+The app shows a scrollable list of characters, each with a circular avatar, name, status and species. Tap a character to open a detail dialog with a large header image, status/species/gender chips and a short facts section. In the current build, the list is filled with 10 generated sample characters. Their avatars are loaded from the public [Rick and Morty API](https://rickandmortyapi.com/) image CDN. A Retrofit client and a Room cache for the full API are scaffolded but not yet wired into the screen.
 
+## Features
 
-## 📸 Screenshots
+- **Character list**: A `RecyclerView` of `MaterialCardView` items, with avatars loaded by Coil.
+- **Detail dialog**: `MaterialAlertDialogBuilder` with the header image, status/species/gender chips, origin, current location, episode count and type.
+- **Status colors**: Alive in green (`#4CAF50`), Dead in red (`#F44336`), Unknown in gray (`#9E9E9E`).
+- **Theming**: Custom card, banner and gradient drawables, a list fall-down animation, and a `values-night` theme.
+- **API layer (scaffolded)**: A `RickAndMortyApi` Retrofit interface for `character` (paged and filterable by name, status, species, type and gender), `character/{id}`, `location` and `episode`.
+- **Offline cache (scaffolded)**: A Room `AppDatabase` with a `CharacterDao` that supports paging, search, favorites and refresh.
 
-
+## Screenshots
 
 <table>
   <tr>
-    <td><img src="demo/demo.png" width="400"></td>
-    <td><img src="demo/demoo.png" width="400"></td>
+    <td align="center"><img src="demo/demo.png" width="360" alt="Screenshot 1"/></td>
+    <td align="center"><img src="demo/demoo.png" width="360" alt="Screenshot 2"/></td>
   </tr>
   <tr>
-    <td><img src="demo/demooo.png" width="400"></td>
-    <td><img src="demo/demoooo.png" width="400"></td>
+    <td align="center"><img src="demo/demooo.png" width="360" alt="Screenshot 3"/></td>
+    <td align="center"><img src="demo/demoooo.png" width="360" alt="Screenshot 4"/></td>
   </tr>
 </table>
 
+There is also a screen recording at [`demo/demo.mp4`](demo/demo.mp4).
 
+## Tech stack
 
----
+| Layer | Technology |
+|-------|------------|
+| Language | Kotlin (JVM target 17, core library desugaring) |
+| UI | Android Views, ViewBinding/DataBinding, Material Components, RecyclerView |
+| Images | Coil |
+| DI | Hilt (Dagger 2.50) |
+| Networking | Retrofit 2, Gson, OkHttp logging interceptor |
+| Persistence | Room 2.6 (with Paging), compiled with KSP |
+| Build | Gradle Kotlin DSL, compileSdk/targetSdk 34, minSdk 26 |
 
-## 🔧 Technical Details
+`app/build.gradle.kts` also declares Firebase, Maps, Lottie, Navigation and Flipper. The current code does not use them.
 
-### 📌 Architecture
-- **Language**: Kotlin
-- **Pattern**: MVVM (Model-View-ViewModel) with Repository
-- **Dependency Injection**: Hilt
-- **Jetpack Components**: ViewModel, LiveData, Navigation
+## Architecture
 
-### 🏗️ Key Components
+```mermaid
+flowchart LR
+    MA[MainActivity] --> AD[RickAndMortyCharacterAdapter]
+    AD --> DLG[Detail dialog]
+    NM[Hilt NetworkModule] -.scaffolded.-> API[Rick and Morty API]
+    DM[Hilt DatabaseModule] -.scaffolded.-> DB[(Room AppDatabase)]
+```
 
-#### **📝 RickAndMortyCharacter** (Data Class)
-Defines character properties:
-- **id** – Unique identifier
-- **name** – Character name
-- **status** – (Alive/Dead/Unknown)
-- **species** – Character species
-- **type** – Additional type info
-- **gender** – Character gender
-- **origin** – Origin location
-- **location** – Current location
-- **image** – Character image URL
-- **episode** – List of episodes featuring the character
-- **isFavorite** – Favorite status
+## Project structure
 
-#### **📄 MainActivity**
-- Entry point of the application
-- Manages the **RecyclerView** for character display
-- Handles **navigation** and UI state
+```
+app/src/main/
+├── java/edu/nku/classapp/
+│   ├── ClassApp.kt                       # @HiltAndroidApp
+│   ├── MainActivity.kt                   # Builds sample list, sets up RecyclerView
+│   ├── RickAndMortyCharacter.kt          # UI model
+│   ├── RickAndMortyCharacterAdapter.kt   # List items + detail dialog
+│   ├── data/
+│   │   ├── model/                        # Character, Location (Room entities)
+│   │   ├── local/                        # AppDatabase, CharacterDao, Converters
+│   │   └── remote/RickAndMortyApi.kt     # Retrofit interface
+│   └── di/                               # NetworkModule, DatabaseModule
+└── res/
+    ├── layout/                           # activity_main, item_character, dialog_character_details
+    ├── drawable/                         # Icons, gradients, card backgrounds
+    └── values/, values-night/            # Colors and themes
+demo/                                     # Screenshots and screen recording
+```
 
-#### **🎨 RickAndMortyCharacterAdapter**
-- Custom **RecyclerView** adapter
-- Handles character item display
-- Manages **character detail dialog**
-- Implements click interactions
+## Getting started
 
----
+### Prerequisites
 
-## 🎨 UI Components
+- Android Studio with JDK 17
+- An emulator or device running Android 8.0 (API 26) or newer
 
-### **🖼️ Character List Item**
-- Displays **circular** character image
-- Shows **name, status, and species**
-- Uses **MaterialCardView** for elevation and touch feedback
-- Implements **color-coded status indicators**
+### Build and run
 
-### **📜 Character Detail Dialog**
-- **Full-screen dialog** with character details
-- **Large header image** with gradient overlay
-- **Status, species, and gender chips**
-- **Detailed information section**
-- **Close button** for easy navigation
-
----
-
-## 🎨 Styling
-
-### **🎨 Colors**
-- **Status Colors:**
-  - 🟢 **Alive** – `#4CAF50` (Green)
-  - 🔴 **Dead** – `#F44336` (Red)
-  - ⚪ **Unknown** – `#9E9E9E` (Gray)
-- **Theme Colors:**
-  - **Primary:** Material Purple
-  - **Background:** Dark theme optimized
-  - **Text:** High contrast for readability
-
-### **🛠️ Components Used**
-- **MaterialCardView** – List items
-- **ShapeableImageView** – Circular images
-- **MaterialChips** – Status indicators
-- **Custom gradients** – Enhancing visual appeal
-
----
-
-## 📦 Setup and Installation
-
-1️⃣ **Clone the repository:**
 ```bash
- git clone https://github.com/yourusername/RickAndMortyCharacterViewer.git
-```
-2️⃣ **Open in Android Studio**
-3️⃣ **Sync Gradle and install dependencies**
-4️⃣ **Run on an emulator or physical device (Minimum SDK 26)**
-
----
-
-## 📜 Dependencies
-
-```kotlin
-// Core Android
-implementation("androidx.core:core-ktx:1.12.0")
-implementation("androidx.appcompat:appcompat:1.6.1")
-implementation("com.google.android.material:material:1.11.0")
-
-// Image Loading
-implementation("io.coil-kt:coil:2.5.0")
-
-// Dependency Injection
-implementation("com.google.dagger:hilt-android:2.50")
-
-// View Binding
-implementation("androidx.recyclerview:recyclerview:1.3.2")
+git clone https://github.com/abhiishek340/Rick-And-Morty.git
+cd Rick-And-Morty
+./gradlew assembleDebug
 ```
 
----
+You can also open the project in Android Studio, let Gradle sync, and run the `app` configuration. No API key is needed.
 
-## 🤝 Contributing
+## Limitations
 
-We welcome contributions! Follow these steps:
+- The names, statuses, species and planets in the list are randomly generated sample data. Only the avatar images come from the API.
+- The Retrofit and Room layers are not connected to a repository or ViewModel yet.
 
-1. **Fork** the repository
-2. **Create a feature branch** (`feature-new-ui`)
-3. **Commit your changes** (`git commit -m "Added new UI animations"`)
-4. **Push to the branch** (`git push origin feature-new-ui`)
-5. **Create a Pull Request**
+## Acknowledgments
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-
-## 🙌 Acknowledgments
-
-- **Rick and Morty API** for character data
-- **Material Design 3 guidelines**
-- **Android development community** for continuous support
+- Character images and API: [The Rick and Morty API](https://rickandmortyapi.com/)
+- UI guidelines: [Material Design](https://m3.material.io/)
 
 ---
 
-## 📧 Contact
-
-📩 [abhiishek340@gmail.com]
-
+Built by [Abhishek Yadav](https://github.com/abhiishek340)
